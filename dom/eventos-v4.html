@@ -1,0 +1,43 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <p>{{ contador }}</p>
+  <button v-on:click="adicionar(5)">Adicionar</button>
+  <button v-on:click="diminuir(10)">Diminuir</button>
+  <p v-on:mousemove="atualizarPosicao">Mouse: {{ x }} e {{ y }}
+    <span v-on:mousemove.stop>PARAR AQUI!!</span>
+  </p>
+  <!-- Navegaçao padrao para o link -->
+  <a v-on:click href="http://google.com">Google</a>
+  <!-- Com o modificador de evento "prevent", o link terá seu comportamento padrao "desabilitado" -->
+  <p>
+    <a v-on:click.prevent href="http://google.com">Google (Desabilitado)</a>
+  </p>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      contador: 0,
+      x: 0,
+      y: 0
+    },
+    methods: {
+      adicionar( passo ) {
+        this.contador += passo
+      },
+      diminuir( passo ) {
+        if (this.contador === 0) {
+          alert('Erro')
+        } else {
+          this.contador -= passo
+        }
+      },
+      atualizarPosicao( event ) {
+        this.x = event.clientX
+        this.y = event.clientY
+      }
+    }
+  })
+</script>
